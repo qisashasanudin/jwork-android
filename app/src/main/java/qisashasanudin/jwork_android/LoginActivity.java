@@ -25,23 +25,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword = findViewById(R.id.editTextPassword);
         Button buttonLogin = findViewById(R.id.buttonLogin);
         TextView goToRegister = findViewById(R.id.goToRegister);
-        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try{
-                    JSONObject jsonObject = new JSONObject(response);
-                    if(jsonObject != null){
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    }
-                }catch (JSONException e){
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                }catch(Exception e){
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +32,23 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject != null) {
+                                Toast.makeText(LoginActivity.this, "Register Successful", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(LoginActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                };
+
                 LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }
         });

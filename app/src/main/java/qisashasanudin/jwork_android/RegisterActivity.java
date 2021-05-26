@@ -27,24 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
         Button buttonRegister = findViewById(R.id.buttonRegister);
         TextView goToLogin = findViewById(R.id.goToLogin);
 
-        RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try{
-                    JSONObject jsonObject = new JSONObject(response);
-                    if(jsonObject != null){
-                        Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
-                    }
-                }catch (JSONException e){
-                    Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_SHORT).show();
-                }catch(Exception e){
-                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +34,23 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject != null) {
+                                Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                };
+                System.out.println(name);
                 RegisterRequest registerRequest = new RegisterRequest(name, email, password, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }
         });
