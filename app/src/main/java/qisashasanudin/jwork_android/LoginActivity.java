@@ -38,10 +38,12 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
-                                Toast.makeText(LoginActivity.this, "Register Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(LoginActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
                         }
                     }
 
