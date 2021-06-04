@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jworkandroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SelesaiJobActivity"></activity>
+        <activity android:name=".ApplyJobActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

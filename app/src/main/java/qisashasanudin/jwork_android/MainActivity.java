@@ -2,6 +2,7 @@ package qisashasanudin.jwork_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.RequestQueue;
@@ -14,16 +15,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Recruiter> listRecruiter = new ArrayList<>();
-    private ArrayList<Job> jobIdList = new ArrayList<>();
+    private ArrayList<Job> jobList = new ArrayList<>();
     private HashMap<Recruiter, ArrayList<Job>> childMapping = new HashMap<>();
+    private int jobseekerId;
+    private String jobseekerName;
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -33,9 +39,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            jobseekerId = extras.getInt("jobseekerId");
+            jobseekerName = extras.getString("jobseekerName");
+        }
 
-        refreshList();
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        Button btnAppliedJob = findViewById(R.id.btnAppliedJob);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                refreshList();
+            }
+        });
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+                Intent intent = new Intent(MainActivity.this, ApplyJobActivity.class);
+                Job selectedJob = childMapping.get(listRecruiter.get(groupPosition)).get(childPosition);
+
+                intent.putExtra("jobId", selectedJob.getId());
+                intent.putExtra("jobName", selectedJob.getName());
+                intent.putExtra("jobCategory", selectedJob.getCategory());
+                intent.putExtra("jobFee", selectedJob.getFee());
+
+                intent.putExtra("jobseekerId", jobseekerId);
+                intent.putExtra("jobseekerName", jobseekerName);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        btnAppliedJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SelesaiJobActivity.class);
+                intent.putExtra("jobseekerId", jobseekerId);
+                intent.putExtra("jobseekerName", jobseekerName);
+                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 
     protected void refreshList(){
@@ -62,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
                             String recruiterPhoneNumber = recruiter.getString("phoneNumber");
 
                             Recruiter newRecruiter = new Recruiter(recruiterId, recruiterName, recruiterEmail, recruiterPhoneNumber, location1);
+
+                            int jobId = job.getInt("id");
+                            String jobName = job.getString("name");
+                            int jobFee = job.getInt("fee");
+                            String jobCategory = job.getString("category");
+
+                            Job newJob = new Job(jobId, jobName, newRecruiter, jobFee, jobCategory);
+
                             if (listRecruiter.size() > 0) {
                                 boolean success = true;
                                 for (Recruiter rec : listRecruiter)
@@ -74,17 +129,21 @@ public class MainActivity extends AppCompatActivity {
                                 listRecruiter.add(newRecruiter);
                             }
 
-                            int jobId = job.getInt("id");
-                            int jobFee = job.getInt("fee");
-                            String jobName = job.getString("name");
-                            String jobCategory = job.getString("category");
-
-                            Job newJob = new Job(jobId, jobName, newRecruiter, jobFee, jobCategory);
-                            jobIdList.add(newJob);
+                            if (jobList.size() > 0) {
+                                boolean success = true;
+                                for (Job thisJob : jobList)
+                                    if (thisJob.getId() == newJob.getId())
+                                        success = false;
+                                if (success) {
+                                    jobList.add(newJob);
+                                }
+                            } else {
+                                jobList.add(newJob);
+                            }
 
                             for (Recruiter sel : listRecruiter) {
                                 ArrayList<Job> temp = new ArrayList<>();
-                                for (Job jobs : jobIdList) {
+                                for (Job jobs : jobList) {
                                     if (jobs.getRecruiter().getName().equals(sel.getName()) || jobs.getRecruiter().getEmail().equals(sel.getEmail()) || jobs.getRecruiter().getPhoneNumber().equals(sel.getPhoneNumber())) {
                                         temp.add(jobs);
                                     }
@@ -97,9 +156,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "JSON excecption: " + e, Toast.LENGTH_LONG).show();
                 }
             }
         };
+
+
         MenuRequest menuRequest = new MenuRequest(responseListener);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(menuRequest);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="55dip">
+    android:layout_height="55dip"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/lblListItem"
@@ -12,6 +12,6 @@
         android:textSize="17dip"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft" />
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
 
 </LinearLayout>

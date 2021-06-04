@@ -40,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (jsonObject != null) {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("jobseekerId", jsonObject.getInt("id"));
+                                intent.putExtra("jobseekerName", jsonObject.getString("name"));
+                                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
                         } catch (JSONException e) {
