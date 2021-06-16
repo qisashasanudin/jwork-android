@@ -12,13 +12,13 @@ public class MenuRequest extends StringRequest {
     private static final String URL = NetworkAdapter.getIpAddress() + "/job";
     private Map<String, String> params;
 
-    public MenuRequest( Response.Listener<String> listener) {
+    public MenuRequest(Response.Listener<String> listener) {
         super(Method.GET, URL, listener, null);
         params = new HashMap<>();
     }
 
     @Override
-    public Map<String, String> getParams()  {
+    public Map<String, String> getParams() {
         return params;
     }
 }

@@ -13,8 +13,7 @@ public class RegisterRequest extends StringRequest {
     private static final String URL = NetworkAdapter.getIpAddress() + "/jobseeker/register";
     private Map<String, String> params;
 
-    public RegisterRequest (String name, String email, String password,
-                            Response.Listener<String> listener){
+    public RegisterRequest(String name, String email, String password, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("name", name);
@@ -23,7 +22,7 @@ public class RegisterRequest extends StringRequest {
     }
 
     @Override
-    protected Map<String,String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws AuthFailureError {
         return params;
     }
 }

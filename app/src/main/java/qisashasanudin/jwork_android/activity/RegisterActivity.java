@@ -37,9 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
         Button buttonRegister = findViewById(R.id.buttonRegister);
         TextView goToLogin = findViewById(R.id.goToLogin);
 
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 buttonRegister.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -47,32 +47,33 @@ public class RegisterActivity extends AppCompatActivity {
                         String email = editTextEmail.getText().toString();
                         String password = editTextPassword.getText().toString();
 
-                        if(name.isEmpty()){
+                        if (name.isEmpty()) {
                             editTextName.setError("Please enter your name");
                             editTextName.requestFocus();
                             return;
                         }
 
-                        if(email.isEmpty()){
+                        if (email.isEmpty()) {
                             editTextEmail.setError("Please enter your email address");
                             editTextEmail.requestFocus();
                             return;
                         }
 
-                        if(password.isEmpty()){
+                        if (password.isEmpty()) {
                             editTextPassword.setError("Please enter your password");
                             editTextPassword.requestFocus();
                             return;
                         }
-                        if(validEmail(email) && validPassword(password)) {
-                            if (validate(email)){
+                        if (validEmail(email) && validPassword(password)) {
+                            if (validate(email)) {
                                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response);
                                             if (jsonObject != null) {
-                                                Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(RegisterActivity.this, "Register Successful",
+                                                        Toast.LENGTH_LONG).show();
                                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                                 intent.putExtra("jobseekerId", jsonObject.getInt("id"));
                                                 intent.putExtra("jobseekerName", jsonObject.getString("name"));
@@ -81,18 +82,21 @@ public class RegisterActivity extends AppCompatActivity {
                                                 finish();
                                             }
                                         } catch (JSONException e) {
-                                            Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_LONG)
+                                                    .show();
                                         }
                                     }
                                 };
-                                RegisterRequest registerRequest = new RegisterRequest(name, email, password, responseListener);
+                                RegisterRequest registerRequest = new RegisterRequest(name, email, password,
+                                        responseListener);
                                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                                 queue.add(registerRequest);
-                            }else {
+                            } else {
                                 Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_LONG).show();
                             }
-                        }else{
-                            Toast.makeText(RegisterActivity.this, "Email or password is invalid", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Email or password is invalid", Toast.LENGTH_LONG)
+                                    .show();
                         }
                     }
                 });
@@ -113,13 +117,13 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public boolean validate(final String mail){
-        Response.Listener<String> responseListener = new Response.Listener<String>(){
+    public boolean validate(final String mail) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
-            public void onResponse(String response){
+            public void onResponse(String response) {
                 ArrayList<String> jobseekers = null;
 
-                try{
+                try {
                     JSONArray jsonResponse = new JSONArray(response);
                     for (int i = 0; i < jsonResponse.length(); i++) {
                         JSONObject jobseeker = jsonResponse.getJSONObject(i);
@@ -127,9 +131,9 @@ public class RegisterActivity extends AppCompatActivity {
                         jobseekers = new ArrayList<String>();
                         jobseekers.add(emailCheck);
                     }
-                    for(String temp: jobseekers){
+                    for (String temp : jobseekers) {
                         valid = true;
-                        if(temp.equals(mail)){
+                        if (temp.equals(mail)) {
                             valid = false;
                         }
                     }
@@ -145,14 +149,14 @@ public class RegisterActivity extends AppCompatActivity {
         return valid;
     }
 
-    public boolean validEmail(final String emailCheck){
+    public boolean validEmail(final String emailCheck) {
         final String EMAIL_PATTERN = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(emailCheck);
         return matcher.matches();
     }
 
-    public boolean validPassword(final String passwordCheck){
+    public boolean validPassword(final String passwordCheck) {
         final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher matcher = pattern.matcher(passwordCheck);

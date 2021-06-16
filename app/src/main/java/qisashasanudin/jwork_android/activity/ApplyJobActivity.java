@@ -81,7 +81,7 @@ public class ApplyJobActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 btnCount.setEnabled(true);
                 btnApply.setEnabled(false);
-                switch(checkedId){
+                switch (checkedId) {
                     case R.id.ewallet:
                         textCode.setVisibility(View.VISIBLE);
                         referral_code.setVisibility(View.VISIBLE);
@@ -106,33 +106,37 @@ public class ApplyJobActivity extends AppCompatActivity {
                         total_fee.setText(Double.toString(jobFee));
                         break;
                     case R.id.ewallet:
-                        if(!referral_code.getText().toString().isEmpty()) {
+                        if (!referral_code.getText().toString().isEmpty()) {
                             final String referralCode = referral_code.getText().toString();
                             Response.Listener<String> responseListener = new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    try{
+                                    try {
                                         JSONObject jsonObject = new JSONObject(response);
-                                        if(jsonObject != null){
+                                        if (jsonObject != null) {
                                             int extraFee = jsonObject.getInt("extraFee");
                                             int minTotalFee = jsonObject.getInt("minTotalFee");
                                             boolean active = jsonObject.getBoolean("active");
-                                            if(active && jobFee>=minTotalFee) {
-                                                Toast.makeText(ApplyJobActivity.this, "Job Applied", Toast.LENGTH_LONG).show();
+                                            if (active && jobFee >= minTotalFee) {
+                                                Toast.makeText(ApplyJobActivity.this, "Job Applied", Toast.LENGTH_LONG)
+                                                        .show();
                                                 total_fee.setText("Rp. " + (jobFee + extraFee));
-                                            }else{
-                                                Toast.makeText(ApplyJobActivity.this, "Bonus inactive or You haven't reached the minimum job fee to use this referral code",Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(ApplyJobActivity.this,
+                                                        "Bonus inactive or You haven't reached the minimum job fee to use this referral code",
+                                                        Toast.LENGTH_LONG).show();
                                             }
                                         }
-                                    } catch (JSONException e){
-                                        Toast.makeText(ApplyJobActivity.this, "Referral Code not found", Toast.LENGTH_LONG).show();
+                                    } catch (JSONException e) {
+                                        Toast.makeText(ApplyJobActivity.this, "Referral Code not found",
+                                                Toast.LENGTH_LONG).show();
                                     }
                                 }
                             };
                             BonusRequest bonusRequest = new BonusRequest(referralCode, responseListener);
                             RequestQueue queue = Volley.newRequestQueue(ApplyJobActivity.this);
                             queue.add(bonusRequest);
-                        } else{
+                        } else {
                             total_fee.setText(Double.toString(jobFee));
                         }
                         break;
@@ -140,9 +144,9 @@ public class ApplyJobActivity extends AppCompatActivity {
             }
         });
 
-        btnApply.setOnClickListener(new View.OnClickListener(){
+        btnApply.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 int chosenRadioButtonId = radioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(chosenRadioButtonId);
                 final String payMethod = radioButton.getText().toString().trim();
@@ -154,7 +158,8 @@ public class ApplyJobActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
-                                Toast.makeText(ApplyJobActivity.this, "Your job is being applied", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ApplyJobActivity.this, "Your job is being applied", Toast.LENGTH_LONG)
+                                        .show();
                                 Intent intent = new Intent(ApplyJobActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.putExtra("jobseekerId", jobseekerId);
@@ -172,12 +177,14 @@ public class ApplyJobActivity extends AppCompatActivity {
                     }
                 };
 
-                switch(chosenRadioButtonId){
+                switch (chosenRadioButtonId) {
                     case R.id.bank:
-                        request = new ApplyJobRequest(jobId + "" , jobseekerId+ "", "/createBankPayment", responseListener);
+                        request = new ApplyJobRequest(jobId + "", jobseekerId + "", "/createBankPayment",
+                                responseListener);
                         break;
                     case R.id.ewallet:
-                        request = new ApplyJobRequest(jobId + "" , jobseekerId + "", ""+ referralCode, "/createEWalletPayment", responseListener);
+                        request = new ApplyJobRequest(jobId + "", jobseekerId + "", "" + referralCode,
+                                "/createEWalletPayment", responseListener);
                         break;
                 }
 
@@ -186,6 +193,5 @@ public class ApplyJobActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }

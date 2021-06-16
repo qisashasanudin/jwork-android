@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             jobseekerId = extras.getInt("jobseekerId");
             jobseekerName = extras.getString("jobseekerName");
         }
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 Fragment selectedFragment = null;
 
-                switch(item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.bottomnav_home:
                         selectedFragment = new HomeFragment();
                         break;
@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new SettingsFragment();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment)
+                        .commit();
                 return true;
             }
         });

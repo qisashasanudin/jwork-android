@@ -12,7 +12,9 @@ import qisashasanudin.jwork_android.adapter.NetworkAdapter;
 
 /**
  * <h1>Request untuk fetch objek jobseeker</h1>
- * <p>Proses request yang dipanggil dari activity</p>
+ * <p>
+ * Proses request yang dipanggil dari activity
+ * </p>
  *
  * @author Qisas Tazkia Hasanuidn
  * @version 1.0
@@ -23,9 +25,10 @@ public class JobseekerRequest extends StringRequest {
 
     /**
      * Request objek customer
+     * 
      * @param listener Response yang dilakukan dari objek yang terdapat pada View
      */
-    public JobseekerRequest (Response.Listener<String> listener){
+    public JobseekerRequest(Response.Listener<String> listener) {
         super(Request.Method.GET, URL, listener, null);
         params = new HashMap<>();
     }
@@ -37,7 +40,7 @@ public class JobseekerRequest extends StringRequest {
      * @throws AuthFailureError jika terjadi kesalahan autentikasi
      */
     @Override
-    protected Map<String,String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws AuthFailureError {
         return params;
     }
 }

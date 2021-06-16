@@ -29,22 +29,22 @@ public class LoginActivity extends AppCompatActivity {
         Button buttonLogin = findViewById(R.id.buttonLogin);
         TextView goToRegister = findViewById(R.id.goToRegister);
 
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 buttonLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String email = editTextEmail.getText().toString();
                         String password = editTextPassword.getText().toString();
 
-                        if(email.isEmpty()){
+                        if (email.isEmpty()) {
                             editTextEmail.setError("Please enter your email address");
                             editTextEmail.requestFocus();
                             return;
                         }
 
-                        if(password.isEmpty()){
+                        if (password.isEmpty()) {
                             editTextPassword.setError("Please enter your password");
                             editTextPassword.requestFocus();
                             return;
@@ -56,10 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     if (jsonObject != null) {
-                                        if(jsonObject.getString("name") == "null"){
+                                        if (jsonObject.getString("name") == "null") {
                                             throw new JSONException("name");
                                         } else {
-                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG)
+                                                    .show();
                                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             intent.putExtra("jobseekerId", jsonObject.getInt("id"));
                                             intent.putExtra("jobseekerName", jsonObject.getString("name"));
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             finish();
                                         }
-                                    }else{
+                                    } else {
                                         Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {

@@ -9,18 +9,17 @@ import java.util.Map;
 
 import qisashasanudin.jwork_android.adapter.NetworkAdapter;
 
-
 public class BonusRequest extends StringRequest {
-    private Map<String,String> params;
+    private Map<String, String> params;
     private static final String url = NetworkAdapter.getIpAddress() + "/bonus";
 
-    public BonusRequest(String referralCode, Response.Listener<String> listener){
-        super(Method.GET, url+referralCode, listener, null);
+    public BonusRequest(String referralCode, Response.Listener<String> listener) {
+        super(Method.GET, url + referralCode, listener, null);
         params = new HashMap<>();
     }
 
     @Override
-    protected Map<String,String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws AuthFailureError {
         return params;
     }
 }

@@ -38,8 +38,10 @@ public class InvoiceFragment extends Fragment {
 
     TextView spacing1;
     View divider1;
-    TextView tvInvoiceId, tvJobseekerName, tvInvoiceDate, tvPaymentType, tvInvoiceStatus, tvReferralCode, tvJobName, tvJobFee, tvTotalFee;
-    TextView staticJobseekerName, staticInvoiceDate, staticPaymentType, staticInvoiceStatus, staticReferralCode, staticJobName, staticTotalFee;
+    TextView tvInvoiceId, tvJobseekerName, tvInvoiceDate, tvPaymentType, tvInvoiceStatus, tvReferralCode, tvJobName,
+            tvJobFee, tvTotalFee;
+    TextView staticJobseekerName, staticInvoiceDate, staticPaymentType, staticInvoiceStatus, staticReferralCode,
+            staticJobName, staticTotalFee;
     Button btnCancel, btnFinish;
 
     String jobseekerName, jobName, invoiceDate, referralCode, paymentType;
@@ -48,7 +50,9 @@ public class InvoiceFragment extends Fragment {
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater,
+            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
+            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_invoice, container, false);
 
         spacing1 = view.findViewById(R.id.spacing1);
@@ -116,7 +120,7 @@ public class InvoiceFragment extends Fragment {
         return view;
     }
 
-        public void fetchJob() {
+    public void fetchJob() {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -239,7 +243,8 @@ public class InvoiceFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
                                 Toast.makeText(getActivity(), "This invoice is cancelled", Toast.LENGTH_LONG).show();
-                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this).attach(InvoiceFragment.this).commit();
+                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this)
+                                        .attach(InvoiceFragment.this).commit();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -265,7 +270,8 @@ public class InvoiceFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
                                 Toast.makeText(getActivity(), "This invoice is finished", Toast.LENGTH_LONG).show();
-                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this).attach(InvoiceFragment.this).commit();
+                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this)
+                                        .attach(InvoiceFragment.this).commit();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

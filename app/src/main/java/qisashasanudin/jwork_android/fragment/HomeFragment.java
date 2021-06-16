@@ -46,19 +46,22 @@ public class HomeFragment extends Fragment {
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater,
+            @Nullable @org.jetbrains.annotations.Nullable ViewGroup container,
+            @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Bundle extras = getActivity().getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             jobseekerId = extras.getInt("jobseekerId");
             jobseekerName = extras.getString("jobseekerName");
         }
 
         expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
-        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition,
+                    int childPosition, long l) {
                 Intent intent = new Intent(getActivity(), ApplyJobActivity.class);
                 Job selectedJob = childMapping.get(listRecruiter.get(groupPosition)).get(childPosition);
 
@@ -84,14 +87,14 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-        protected void refreshList(){
+    protected void refreshList() {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonResponse = new JSONArray(response);
                     if (jsonResponse != null) {
-                        for (int i = 0; i < jsonResponse.length(); i++){
+                        for (int i = 0; i < jsonResponse.length(); i++) {
                             JSONObject job = jsonResponse.getJSONObject(i);
                             JSONObject recruiter = job.getJSONObject("recruiter");
                             JSONObject location = recruiter.getJSONObject("location");
@@ -107,7 +110,8 @@ public class HomeFragment extends Fragment {
                             String recruiterEmail = recruiter.getString("email");
                             String recruiterPhoneNumber = recruiter.getString("phoneNumber");
 
-                            Recruiter newRecruiter = new Recruiter(recruiterId, recruiterName, recruiterEmail, recruiterPhoneNumber, location1);
+                            Recruiter newRecruiter = new Recruiter(recruiterId, recruiterName, recruiterEmail,
+                                    recruiterPhoneNumber, location1);
 
                             int jobId = job.getInt("id");
                             String jobName = job.getString("name");
@@ -143,7 +147,9 @@ public class HomeFragment extends Fragment {
                             for (Recruiter sel : listRecruiter) {
                                 ArrayList<Job> temp = new ArrayList<>();
                                 for (Job jobs : jobList) {
-                                    if (jobs.getRecruiter().getName().equals(sel.getName()) || jobs.getRecruiter().getEmail().equals(sel.getEmail()) || jobs.getRecruiter().getPhoneNumber().equals(sel.getPhoneNumber())) {
+                                    if (jobs.getRecruiter().getName().equals(sel.getName())
+                                            || jobs.getRecruiter().getEmail().equals(sel.getEmail())
+                                            || jobs.getRecruiter().getPhoneNumber().equals(sel.getPhoneNumber())) {
                                         temp.add(jobs);
                                     }
                                 }

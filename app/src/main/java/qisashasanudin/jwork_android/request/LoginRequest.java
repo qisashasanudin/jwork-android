@@ -13,7 +13,7 @@ public class LoginRequest extends StringRequest {
     private static final String URL = NetworkAdapter.getIpAddress() + "/jobseeker/login";
     private Map<String, String> params;
 
-    public LoginRequest(String email, String password, Response.Listener<String> listener){
+    public LoginRequest(String email, String password, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("email", email);
@@ -21,7 +21,7 @@ public class LoginRequest extends StringRequest {
     }
 
     @Override
-    protected Map<String,String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws AuthFailureError {
         return params;
     }
 }
