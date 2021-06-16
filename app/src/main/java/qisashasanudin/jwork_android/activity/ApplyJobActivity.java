@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android;
+package qisashasanudin.jwork_android.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +18,10 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import qisashasanudin.jwork_android.R;
+import qisashasanudin.jwork_android.requests.ApplyJobRequest;
+import qisashasanudin.jwork_android.requests.BonusRequest;
 
 public class ApplyJobActivity extends AppCompatActivity {
 

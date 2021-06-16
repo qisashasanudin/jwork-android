@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android;
+package qisashasanudin.jwork_android.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +22,13 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
+
+import qisashasanudin.jwork_android.objects.Job;
+import qisashasanudin.jwork_android.objects.Location;
+import qisashasanudin.jwork_android.adapters.MainListAdapter;
+import qisashasanudin.jwork_android.R;
+import qisashasanudin.jwork_android.objects.Recruiter;
+import qisashasanudin.jwork_android.requests.MenuRequest;
 
 public class MainActivity extends AppCompatActivity {
 

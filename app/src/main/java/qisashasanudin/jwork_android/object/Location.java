@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android;
+package qisashasanudin.jwork_android.objects;
 
 public class Location {
     private String province;
