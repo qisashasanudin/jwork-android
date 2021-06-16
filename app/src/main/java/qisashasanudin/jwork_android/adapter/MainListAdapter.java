@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.adapters;
+package qisashasanudin.jwork_android.adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +12,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import qisashasanudin.jwork_android.R;
-import qisashasanudin.jwork_android.objects.Job;
-import qisashasanudin.jwork_android.objects.Recruiter;
+import qisashasanudin.jwork_android.object.Job;
+import qisashasanudin.jwork_android.object.Recruiter;
 
 public class MainListAdapter extends BaseExpandableListAdapter {
 

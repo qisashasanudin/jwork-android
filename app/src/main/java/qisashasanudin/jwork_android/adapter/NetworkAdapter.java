@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.adapters;
+package qisashasanudin.jwork_android.adapter;
 
 public class NetworkAdapter {
     private static NetworkAdapter instance;

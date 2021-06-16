@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.activities;
+package qisashasanudin.jwork_android.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import qisashasanudin.jwork_android.R;
-import qisashasanudin.jwork_android.requests.ApplyJobRequest;
-import qisashasanudin.jwork_android.requests.BonusRequest;
+import qisashasanudin.jwork_android.request.ApplyJobRequest;
+import qisashasanudin.jwork_android.request.BonusRequest;
 
 public class ApplyJobActivity extends AppCompatActivity {
 

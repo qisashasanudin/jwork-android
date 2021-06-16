@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.objects;
+package qisashasanudin.jwork_android.object;
 
 public class Job {
     private int id;

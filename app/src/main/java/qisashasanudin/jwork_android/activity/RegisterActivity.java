@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.activities;
+package qisashasanudin.jwork_android.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +20,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import qisashasanudin.jwork_android.R;
-import qisashasanudin.jwork_android.requests.JobseekerRequest;
-import qisashasanudin.jwork_android.requests.RegisterRequest;
+import qisashasanudin.jwork_android.request.JobseekerRequest;
+import qisashasanudin.jwork_android.request.RegisterRequest;
 
 public class RegisterActivity extends AppCompatActivity {
     boolean valid;

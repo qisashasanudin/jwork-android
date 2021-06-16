@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.fragments;
+package qisashasanudin.jwork_android.fragment;
 
 import android.os.Bundle;
 

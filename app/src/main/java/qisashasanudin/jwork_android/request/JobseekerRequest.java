@@ -1,4 +1,4 @@
-package qisashasanudin.jwork_android.requests;
+package qisashasanudin.jwork_android.request;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import qisashasanudin.jwork_android.adapters.NetworkAdapter;
+import qisashasanudin.jwork_android.adapter.NetworkAdapter;
 
 /**
  * <h1>Request untuk fetch objek jobseeker</h1>
