@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".fragment.InvoiceFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="invoice_id"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -28,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Jobseeker Name: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/invoice_id" />
 
@@ -36,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticJobseekerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticJobseekerName" />
@@ -46,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Invoice Date: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticJobseekerName" />
 
@@ -54,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticInvoiceDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticInvoiceDate" />
@@ -64,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Payment Type:"
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticInvoiceDate" />
 
@@ -72,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticPaymentType"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticPaymentType" />
@@ -82,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Invoice Status: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticPaymentType" />
 
@@ -90,6 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticInvoiceStatus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticInvoiceStatus" />
@@ -100,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Referral Code: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticInvoiceStatus" />
 
@@ -108,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticReferralCode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticReferralCode" />
@@ -117,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/textColor"
             android:text=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticReferralCode" />
@@ -127,6 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Job Name: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spacing1" />
 
@@ -136,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticJobName" />
 
@@ -144,6 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/job_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/job_name" />
@@ -153,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/textColor"
             app:layout_constraintTop_toBottomOf="@+id/job_name"/>
 
         <TextView
@@ -162,6 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Total Fee: "
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -170,6 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="@+id/staticTotalFee"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/staticTotalFee" />

@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.LoginActivity"
+    android:background="@color/backgroundColor">
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -19,7 +20,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/textColor"
+        android:textColor="@color/textColor"
+        />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -31,7 +35,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        android:backgroundTint="@color/textColor"
+        android:textColor="@color/textColor"
+        />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -53,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        android:textColor="@color/textColor"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

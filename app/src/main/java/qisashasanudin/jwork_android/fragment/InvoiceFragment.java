@@ -243,7 +243,7 @@ public class InvoiceFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
                                 Toast.makeText(getActivity(), "This invoice is cancelled", Toast.LENGTH_LONG).show();
-                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this)
+                                getParentFragmentManager().beginTransaction().detach(InvoiceFragment.this)
                                         .attach(InvoiceFragment.this).commit();
                             }
                         } catch (JSONException e) {
@@ -270,7 +270,7 @@ public class InvoiceFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null) {
                                 Toast.makeText(getActivity(), "This invoice is finished", Toast.LENGTH_LONG).show();
-                                getFragmentManager().beginTransaction().detach(InvoiceFragment.this)
+                                getParentFragmentManager().beginTransaction().detach(InvoiceFragment.this)
                                         .attach(InvoiceFragment.this).commit();
                             }
                         } catch (JSONException e) {
