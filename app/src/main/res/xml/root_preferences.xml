@@ -7,9 +7,9 @@
         <Preference
             android:title="Version"
             android:summary="1.0.0"/>
-        <Preference
-            android:key="contact_pref"
-            android:title="About Us"/>
+<!--        <Preference-->
+<!--            android:key="contact_pref"-->
+<!--            android:title="About Us"/>-->
     </PreferenceCategory>
 
     <PreferenceCategory
